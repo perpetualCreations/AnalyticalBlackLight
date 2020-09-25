@@ -13,8 +13,7 @@ List of keywords must be a multiple of 5.
 
 from pytrends.request import TrendReq
 from random import randint
-import pandas, configparser
-import argparse
+import pandas, configparser, argparse
 
 # argparse
 parameters = argparse.ArgumentParser(prog = "AnalyticalBlackLight", description = "Produces CSV file or graph of search interest of keywords outlined in keywords.txt. See readme.md for more information.")
@@ -82,7 +81,8 @@ export_dataframe = pandas.concat(collection_list, axis = 1)
 
 # exports
 if arguments.CSV_out == 1:
-    export_dataframe.to_csv(("csv_export/" + str(randint(1, 9999999)) + ".csv"))
+    print("Exporting to CSV...")
+    export_dataframe.to_csv(str(randint(1, 9999999)) + ".csv")
 pass
 
 if arguments.graph_out == 1:
