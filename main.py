@@ -14,6 +14,7 @@ List of keywords must be a multiple of 5.
 from pytrends.request import TrendReq
 from random import randint
 import pandas, configparser, argparse
+import matplotlib.pyplot as plot
 
 # argparse
 parameters = argparse.ArgumentParser(prog = "AnalyticalBlackLight", description = "Produces CSV file or graph of search interest of keywords outlined in keywords.txt. See readme.md for more information.")
@@ -79,6 +80,9 @@ pass
 # merging dataframes
 export_dataframe = pandas.concat(collection_list, axis = 1)
 
+# remove isPartial columns
+del export_dataframe["isPartial"]
+
 # exports
 if arguments.CSV_out == 1:
     print("Exporting to CSV...")
@@ -86,5 +90,6 @@ if arguments.CSV_out == 1:
 pass
 
 if arguments.graph_out == 1:
-    pass
+    export_dataframe.plot(kind = "line")
+    plot.savefig(str(randint(1, 9999999)) + ".png")
 pass
