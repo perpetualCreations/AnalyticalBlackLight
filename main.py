@@ -82,7 +82,7 @@ export_dataframe = pandas.concat(collection_list, axis = 1)
 
 # exports
 if arguments.CSV_out == 1:
-    export_dataframe.to_csv((input("Export Path: ") + str(randint(1, 9999999)) + ".csv"))
+    export_dataframe.to_csv(("csv_export/" + str(randint(1, 9999999)) + ".csv"))
 pass
 
 if arguments.graph_out == 1:
