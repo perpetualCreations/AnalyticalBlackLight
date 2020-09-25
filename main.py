@@ -2,12 +2,13 @@
 AnalyticalBlackLight
 Made by perpetualCreations
 
-Uses pytrends as a black light on student cheating during virtual testing.
-This serves as a tool to increase the number of keywords that can be analyzed at the same time.
-Additionally can generate a plot of search interest, or return as a pandas dataframe for further data science processing.
+Uses pytrends to gather bulk information on search interest over time for certain keywords.
+Designed originally for finding search interest for keywords that cheating students may use during tests.
+
+This serves as a tool to increase the number of keywords that can be analyzed at the same time, in an organized and controlled manner.
+Generates graph or CSV file as output.
 
 List of keywords must be a multiple of 5.
-TODO implement argparse
 """
 
 from pytrends.request import TrendReq
@@ -15,12 +16,35 @@ from random import randint
 import pandas, configparser
 import argparse
 
-# blank target parameter objects
-target_date_1 = None
-target_date_2 = None
-target_country = None
-target_state = None
-target_county = None
+# argparse
+parameters = argparse.ArgumentParser(prog = "AnalyticalBlackLight", description = "Produces CSV file or graph of search interest of keywords outlined in keywords.txt. See readme.md for more information.")
+parameters.add_argument("--csv", dest = "CSV_out", help = "Toggle CSV export, with 1 or 0.", type = int)
+parameters.add_argument("--graph", dest = "graph_out", help = "Toggle graph output, with 1 or 0.", type = int)
+parameters.add_argument("-c", dest = "use_config", help = "Toggle whether to read form targets.cfg, with 1 or 0.", type = int)
+parameters.add_argument("-s", dest = "start_date", help = "Start date of range, format YYYY-MM-DD.", type = str)
+parameters.add_argument("-e", dest = "end_date", help = "End date of range, format YYYY-MM-DD.", type = str)
+parameters.add_argument("-n", dest = "country", help = "Narrow down by country, i.e US...", type = str)
+parameters.add_argument("-p", dest = "state", help = "Narrow down by state, i.e CA...", type = str)
+parameters.add_argument("-x", dest = "county", help = "Narrow down by county. See documentation.", type = str)
+
+arguments = parameters.parse_args()
+
+# parameter objects
+if arguments.use_config == 1:
+    targets_parser = configparser.ConfigParser()
+    targets_parser.read("targets.cfg")
+    target_date_1 = targets_parser["TIME"]["date_1"]
+    target_date_2 = targets_parser["TIME"]["date_2"]
+    target_country = targets_parser["LOCATION"]["country"]
+    target_state = targets_parser["LOCATION"]["state"]
+    target_county = targets_parser["LOCATION"]["county"]
+else:
+    target_date_1 = arguments.start_date
+    target_date_2 = arguments.end_date
+    target_country = arguments.country
+    target_state = arguments.state
+    target_county = arguments.county
+pass
 
 pytrend = TrendReq() # object for requesting trends payloads.
 
@@ -35,21 +59,6 @@ def keywords_read():
     with open("keywords.txt") as keywords:
         return keywords.read().splitlines()
     pass
-pass
-
-def config_read():
-    """
-    Reads targets.cfg.
-    :return: none.
-    """
-    global target_date_1, target_date_2, target_country, target_state, target_county
-    targets_parser = configparser.ConfigParser()
-    targets_parser.read("targets.cfg")
-    target_date_1 = targets_parser["TIME"]["date_1"]
-    target_date_2 = targets_parser["TIME"]["date_2"]
-    target_country = targets_parser["LOCATION"]["country"]
-    target_state = targets_parser["LOCATION"]["state"]
-    target_county = targets_parser["LOCATION"]["county"]
 pass
 
 print("Targets: \nFirst Date: " + target_date_1 + "\nSecond Date: " + target_date_2 + "\nCountry: " + target_country +
@@ -71,18 +80,11 @@ pass
 # merging dataframes
 export_dataframe = pandas.concat(collection_list, axis = 1)
 
-def export():
-    """
-    Exports data to CSV. TODO file path -> argparse
-    :return:
-    """
+# exports
+if arguments.CSV_out == 1:
     export_dataframe.to_csv((input("Export Path: ") + str(randint(1, 9999999)) + ".csv"))
 pass
 
-def graph():
-    """
-    Matplotlib graphing from CSV data.
-    :return:
-    """
-
+if arguments.graph_out == 1:
+    pass
 pass

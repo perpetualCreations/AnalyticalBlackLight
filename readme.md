@@ -7,7 +7,8 @@
 
 ABL uses pytrends as a black light on student cheating during virtual testing.
 It can export results through matplotlib and make a statistics graph you can annotate and discern information form.
-Or, it can simply just return a plain text table.
+
+ABL can be used for other keywords, feel free to edit the keywords.txt file to make your own set of keywords you want to collect bulk search interest data on.
 
 ### Why?
 Normally, you could just manually download CSV spreadsheets on search keywords from Google Trends.
@@ -27,6 +28,15 @@ You think leaving webcams on and having a "responsible adult" around is going to
 
 What kind of narrow minded b-
 
+#### All jokes aside, what can I use this for, besides finding cheating?
+Well, feel free to replace the keywords list with other things.
+Want to know how many people are freaking out over the election in New York? 
+Or how frantic the Australians are as air quality drops as fast as the number of natural habitats?  
+Analyze away. The things you search, it can be anything you want, so long Google has data on it.
+
+Do note however, the rest of the documentation was written in the context of student cheating.
+Yeah. May or may not have been a mistake.
+
 ### Ok, fine. How do I use this.
 Oh perfect. Ok so first thing you need to do is get a stress ball.
 Hey. Look at me. Squeeze the stress ball if you're angry, ok?
@@ -37,55 +47,29 @@ Download the latest release on the repository page, and extract contents
 #### Install Python Dependencies
 Install Python and packages listed in requirements.txt through PIP.
 
-#### Argparse
-ABL is a command-line tool. 
-In Windows, open this software directory in command prompt, and in Linux, navigate to this directory from terminal.
-
-Run the following: 
-````
-python main.py --help
-````
-
-In Linux, you'll need to type python3 instead of python.
-
-The command above will give a list of arguments and flags available.
-
-Run the following:
-````
-python main.py --csv -c
-````
-
-In Linux, you'll need to type python3 instead of python.
-
-The command above will read from targets.cfg and export results to a CSV file, in the csv-export directory.
-
-There are more flags such as ``--pandas --graph`` which are different export types, and if you don't want to edit targets.cfg and want to use arguments:
-
-Run the following:
-````
-python main.py --csv -s 2020-9-1 -e 2020-9-28 -n US -p MD -x 511
-````
-
-In Linux, you'll need to type python3 instead of python.
-
-The command above will read all entries from 2020-9-1 (YYYY-MM-DD format, by the way) to 2020-9-28, for area Washington DC and surrounding DC nearby, Maryland, United States, and export to CSV file. 
-
 #### Arguments
-You've probably found out now, ABL takes in 5 positional parameters in time and space.
+ABL is a command-line tool. It takes in 5 positional parameters in time and space, 1 input parameter, and 2 output parameters.
 
-The two start and end dates, are the range which data is collected from. Please have a reasonable cutoff, I doubt a testing service made this year will have any references in 2004.
+The two output parameters are ``--csv`` and ``--graph`` which you need to add a 0 or 1 after the parameter to toggle. 
+As their names suggest, they signal whether ABL should export a CSV file or a graph. Or both.
+
+If you wish to forgo writing positional parameters, you can toggle ``-c`` with a 1 or 0 to read from targets.cfg instead.
+
+The two start and end dates, being ``-s`` and ``-e`` are the range which data is collected from. Please have a reasonable cutoff, I doubt a testing service made this year will have any references in 2004.
 If you use your brain, you might even be able to shave a few seconds out of processing time.
+Please format these as YYYY-MM-DD
 
 The three remaining parameters are country, state, and county. In command-line, not using targets.cfg, they are ``-n -p -x``, in the same order.
+County or ``-x`` is a bit of a... weird... parameter. Google has integer codes for counties, in Google Trends at least. For example, NYC is 501. Houston in Texas is 618. You'll need to do a bit of digging.
 Why is this useful? I hope it's obvious: because unless your school system has branches in Alaska or Shanghai, you probably can narrow it down a bit to your school district, right?
 
 #### Graphs
-Oh, you learned to replace ``--csv`` with ``--graph``?
-Good job. Pat yourself on the back. You accomplished something.
+Oh, you dare to actually pickup a pen and annotate a graph?
+Good job. Pat yourself on the back.
 
-After exporting a graph, annotate it. Know the testing schedule?
+Know the testing schedule?
 During testing hours, look for spikes in keyword usage. 
-If you find spikes, ring the bell.
+If you find spikes where you drew marks for testing hours, ring the bell.
 
 Because that's the blood on the wall, and if you can read it, it screams cheaters.
 
