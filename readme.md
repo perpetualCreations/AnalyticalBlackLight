@@ -5,17 +5,11 @@
 
 *No? What if they were ruining yours, and punched a hole in your window?*
 
-ABL uses pytrends as a black light on student cheating during virtual testing.
-It can export results through matplotlib and make a statistics graph you can annotate and discern information form.
-
-ABL can be used for other keywords, feel free to edit the keywords.txt file to make your own set of keywords you want to collect bulk search interest data on.
+ABL uses Google search interest through pytrends as a black light on student cheating during virtual testing.
 
 ### Why?
 Normally, you could just manually download CSV spreadsheets on search keywords from Google Trends.
-But more data is better data, using just 1 or 10 keywords as part of your data set is extremely small.
-
-You need a lot more keywords, and that means more spreadsheets, and more merging those spreadsheets.
-Have fun trying to manage 110+ keywords, and then using what little energy you have left making anything close to a neat graph.
+However with more and more keywords it becomes harder to manage. ABL streamlines this.
 
 ABL handles downloading all of this trend data through pytrends, a Python implementation of Google's Trends API. It is then able to merge data from each request into a single spreadsheet and graph the result.
 
@@ -29,17 +23,17 @@ You think leaving webcams on and having a "responsible adult" around is going to
 What kind of narrow minded b-
 
 #### All jokes aside, what can I use this for, besides finding cheating?
-Well, feel free to replace the keywords list with other things.
+Well, feel free to edit the keywords the list. Replace it with anything you want, so long the number of keywords is a multiple of five.
 Want to know how many people are freaking out over the election in New York? 
-Or how frantic the Australians are as air quality drops as fast as the number of natural habitats?  
-Analyze away. The things you search, it can be anything you want, so long Google has data on it.
+Or how panicked the Aussies are as they watch their continent burn?
+Maybe you want to know trending foods in California, to get away from all of this end-of-the-world nonsense?
+Analyze away. As long as Google has the data, you can retrieve it. 
 
 Do note however, the rest of the documentation was written in the context of student cheating.
-Yeah. May or may not have been a mistake.
+Not sure if that was a mistake. 
 
 ### Ok, fine. How do I use this.
-Oh perfect. Ok so first thing you need to do is get a stress ball.
-Hey. Look at me. Squeeze the stress ball if you're angry, ok?
+Oh perfect.
 
 #### Download and Extract
 Download the latest release on the repository page, and extract contents
@@ -47,11 +41,15 @@ Download the latest release on the repository page, and extract contents
 #### Install Python Dependencies
 Install Python and packages listed in requirements.txt through PIP.
 
-#### Arguments
-ABL is a command-line tool. It takes in 5 positional parameters in time and space, 1 input parameter, and 2 output parameters.
+#### Keywords
+ABL is prepackaged with a list of keywords.
+These may or may not be relevant to you. Please go through them, and change as needed. 
 
-The two output parameters are ``--csv`` and ``--graph`` which you need to add a 0 or 1 after the parameter to toggle. 
-As their names suggest, they signal whether ABL should export a CSV file or a graph. Or both.
+#### Arguments
+ABL is a command-line tool. It takes in 5 positional parameters in time and space, 1 input parameter, and 3 output parameters.
+
+The three output parameters are ``--csv``, ``--showgraph`` and ``--graph`` which you need to add a 0 or 1 after the parameter to toggle. 
+As their names suggest, they signal whether ABL should export a CSV file or a graph. Or both. ``--graph`` exports the graph to a .PNG file, while ``--showgraph`` uses the built-in viewer.
 
 If you wish to forgo writing positional parameters, you can toggle ``-c`` with a 1 or 0 to read from targets.cfg instead.
 
@@ -63,21 +61,15 @@ The three remaining parameters are country, state, and county. In command-line, 
 County or ``-x`` is a bit of a... weird... parameter. Google has integer codes for counties, in Google Trends at least. For example, NYC is 501. Houston in Texas is 618. You'll need to do a bit of digging.
 Why is this useful? I hope it's obvious: because unless your school system has branches in Alaska or Shanghai, you probably can narrow it down a bit to your school district, right?
 
-#### Graphs
-Oh, you dare to actually pickup a pen and annotate a graph?
-Good job. Pat yourself on the back.
-
-Know the testing schedule?
-During testing hours, look for spikes in keyword usage. 
-If you find spikes where you drew marks for testing hours, ring the bell.
-
-Because that's the blood on the wall, and if you can read it, it screams cheaters.
+#### Analysis
+I think this should be fairly obvious. You highlight the time of the testing session, and you check if search interest is higher than normal. 
+If you have trouble dealing with raw spreadsheets, consider graphing instead.
 
 ### That's it?
 Yes. That's it.
 
 #### This is a glorified CSV data manager, designed for collecting specific pieces of information.
-Mhm.
+Mhm. No one said making specialized tools was a bad thing.
 
 #### I mean, this is pretty complicated. Any alternatives?
 Well, you can see if:
@@ -93,6 +85,3 @@ Or of course you can also just:
 
 That's it. 4 months. Please. Web cams don't do anything. I know people who have their eyes on the camera, but their fingers are playing competitive FPS.
 You can't just "read" people either like some sort of psychic. 
-
-#### Mainframe? Hackerman?
-Look it's evolving! Just backwards!

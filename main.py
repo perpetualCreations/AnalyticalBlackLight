@@ -14,12 +14,13 @@ List of keywords must be a multiple of 5.
 from pytrends.request import TrendReq
 from random import randint
 import pandas, configparser, argparse
-import matplotlib.pyplot as plot
+import matplotlib.pyplot as plt
 
 # argparse
 parameters = argparse.ArgumentParser(prog = "AnalyticalBlackLight", description = "Produces CSV file or graph of search interest of keywords outlined in keywords.txt. See readme.md for more information.")
 parameters.add_argument("--csv", dest = "CSV_out", help = "Toggle CSV export, with 1 or 0.", type = int)
 parameters.add_argument("--graph", dest = "graph_out", help = "Toggle graph output, with 1 or 0.", type = int)
+parameters.add_argument("--showgraph", dest = "graph_show", help = "Toggle built-in viewer for graphing.", type = int)
 parameters.add_argument("-c", dest = "use_config", help = "Toggle whether to read form targets.cfg, with 1 or 0.", type = int)
 parameters.add_argument("-s", dest = "start_date", help = "Start date of range, format YYYY-MM-DD.", type = str)
 parameters.add_argument("-e", dest = "end_date", help = "End date of range, format YYYY-MM-DD.", type = str)
@@ -71,8 +72,8 @@ while collect_cycle != len(keywords_read()):
     pytrend.build_payload(
         [keywords_read()[collect_cycle], keywords_read()[collect_cycle + 1], keywords_read()[collect_cycle + 2],
          keywords_read()[collect_cycle + 3], keywords_read()[collect_cycle + 4]],
-        timeframe=target_date_1 + " " + target_date_2,
-        geo=target_country + "-" + target_state + "-" + target_county)
+        timeframe = target_date_1 + " " + target_date_2,
+        geo = target_country + "-" + target_state + "-" + target_county)
     collection_list.append(pytrend.interest_over_time())
     collect_cycle += 5
 pass
@@ -90,6 +91,11 @@ if arguments.CSV_out == 1:
 pass
 
 if arguments.graph_out == 1:
-    export_dataframe.plot(kind = "line")
-    plot.savefig(str(randint(1, 9999999)) + ".png")
+    export_dataframe.plot(kind = "bar", figsize = (20, 20)); plt.legend(loc = "right", prop = {"size": 5})
+    plt.savefig(str(randint(1, 9999999)) + ".png")
+pass
+
+if arguments.graph_show == 1:
+    export_dataframe.plot(kind = "bar", figsize = (20, 20)); plt.legend(loc = "right", prop = {"size": 5})
+    plt.show()
 pass
