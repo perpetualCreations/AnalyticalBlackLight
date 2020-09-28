@@ -61,50 +61,10 @@ modulus
 log
 logarithm
 exponent
-to kill a mockingbird
-pride and prejudice
-jane eyre
-1984
-the great gatsby
-animal farm
-the count of monte cristo
-hamlet
-shakespeare
-romeo and juliet
-wuthering heights
-fahrenheit 451
-the catcher in the rye
-lord of the flies
-crime and punishment
-frankenstein
-dracula
-sense and sensibility
-great expectations
-the diary of a young girl
-japanese internment
-a christmas carol
-les miserables
-the adventures of huckleberry finn
-the tale of two cities
-gone with the wind
-persuasion
-the secret garden
-alice adventures in wonderland
-alice in wonderland
-through the looking glass
-of mice and men
-common sense
-common sense text
-the odyssey
-the scarlet letter
-catch 22
-war and peace
-slaughterhouse five
-lord of the flies
-treasure island
-the call of the wild
+linear pair postulate
+corresponding angle theorem
+transitive property
+desmos
 thesaurus
 dictionary
-civil rights
-nwea map login
-nwea teacher login
+synonyms
