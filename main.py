@@ -27,6 +27,7 @@ parameters.add_argument("-e", dest = "end_date", help = "End date of range, form
 parameters.add_argument("-n", dest = "country", help = "Narrow down by country, i.e US...", type = str)
 parameters.add_argument("-p", dest = "state", help = "Narrow down by state, i.e CA...", type = str)
 parameters.add_argument("-x", dest = "county", help = "Narrow down by county. See documentation.", type = str)
+parameters.add_argument("--dialogue", dest = "dialogue", help = "Do not use this argument! This is for the GUI wrapper, so it displays a dialogue at the end of processing.", type = int)
 
 arguments = parameters.parse_args()
 
@@ -98,4 +99,10 @@ pass
 if arguments.graph_show == 1:
     export_dataframe.plot(kind = "bar", figsize = (20, 20)); plt.legend(loc = "right", prop = {"size": 5})
     plt.show()
+pass
+
+# check for dialogue request, this should only be triggered by GUI wrapper!
+if arguments.dialogue == 1:
+    import tkinter.messagebox as dialogue
+    dialogue.showinfo("ABL: Task Finished", "Task has finished.")
 pass

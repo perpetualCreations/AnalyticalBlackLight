@@ -46,7 +46,7 @@ ABL is prepackaged with a list of keywords.
 These may or may not be relevant to you. Please go through them, and change as needed. 
 
 #### Arguments
-ABL is a command-line tool. It takes in 5 positional parameters in time and space, 1 input parameter, and 3 output parameters.
+ABL can be used as a command-line tool. It takes in 5 positional parameters in time and space, 1 input parameter, and 3 output parameters.
 
 The three output parameters are ``--csv``, ``--showgraph`` and ``--graph`` which you need to add a 0 or 1 after the parameter to toggle. 
 As their names suggest, they signal whether ABL should export a CSV file or a graph. Or both. ``--graph`` exports the graph to a .PNG file, while ``--showgraph`` uses the built-in viewer.
@@ -60,6 +60,14 @@ Please format these as YYYY-MM-DD
 The three remaining parameters are country, state, and county. In command-line, not using targets.cfg, they are ``-n -p -x``, in the same order.
 County or ``-x`` is a bit of a... weird... parameter. Google has integer codes for counties, in Google Trends at least. For example, NYC is 501. Houston in Texas is 618. You'll need to do a bit of digging.
 Why is this useful? I hope it's obvious: because unless your school system has branches in Alaska or Shanghai, you probably can narrow it down a bit to your school district, right?
+
+#### GUI
+ABL additionally can be ran with a GUI, by running script gui.py.
+The GUI version has entry boxes and a dropdown menu for selecting parameters, that are all labelled. 
+After selecting your export type, and entering start and end date, country, state, and county, press process. A dialogue will show up, notifying you that the task has been issued.
+In Windows, ABL will show up as not responding for a few seconds. This will be longer or shorter depending on the number of keywords you are processing, and your export type.
+
+Another dialogue will appear to inform you that processing is complete. Check software directory for exported file if you ran CSV or graph export.
 
 #### Analysis
 I think this should be fairly obvious. You highlight the time of the testing session, and you check if search interest is higher than normal. 
